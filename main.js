@@ -223,5 +223,17 @@ Commands:
 `);
   }
 });
-
+bot.on("guildCreate", guild => {
+  console.log(
+    `Joined a new guild: ${guild.name}  (id: ${guild.id}, members: ${guild.memberCount})`
+  );
+});
 bot.login(process.env.TOKEN);
+
+bot.once("ready", () => {
+  console.log(`Logged in as ${bot.user.tag}`);
+  console.log("Connected guilds:");
+  bot.guilds.cache.forEach(g =>
+    console.log(`• ${g.name}  (id: ${g.id})`)
+  );
+});
